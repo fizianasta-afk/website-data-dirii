@@ -428,6 +428,19 @@
 
 <script>
 
+    const sudahLogin =
+    localStorage.getItem(
+        "sudahLogin"
+    );
+
+if (
+    sudahLogin !== "true"
+) {
+
+    window.location.href =
+        "login.html";
+
+}
 
 // ==================================
 // AMBIL FILE YANG TERSIMPAN
