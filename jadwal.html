@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Jadwal Pelajaran</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .jadwal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 15px;
+
+            margin-top: 10px;
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+        }
+
+        .jam {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .kembali {
+            background: #64748b;
+        }
+
+        .kembali:hover {
+            background: #475569;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <h1>📅 Jadwal Pelajaran</h1>
+
+    <p>
+        Jadwal pelajaran kamu
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- SENIN -->
+
+    <div class="card">
+
+        <h2>📘 Senin</h2>
+
+        <div id="senin"></div>
+
+    </div>
+
+
+    <!-- SELASA -->
+
+    <div class="card">
+
+        <h2>📗 Selasa</h2>
+
+        <div id="selasa"></div>
+
+    </div>
+
+
+    <!-- RABU -->
+
+    <div class="card">
+
+        <h2>📙 Rabu</h2>
+
+        <div id="rabu"></div>
+
+    </div>
+
+
+    <!-- KAMIS -->
+
+    <div class="card">
+
+        <h2>📕 Kamis</h2>
+
+        <div id="kamis"></div>
+
+    </div>
+
+
+    <!-- JUMAT -->
+
+    <div class="card">
+
+        <h2>📒 Jumat</h2>
+
+        <div id="jumat"></div>
+
+    </div>
+
+
+    <button onclick="editJadwal()">
+
+        ⚙️ Edit Jadwal
+
+    </button>
+
+
+    <button
+        class="kembali"
+        onclick="kembali()">
+
+        🏠 Kembali
+
+    </button>
+
+
+</div>
+
+
+<script>
+
+
+// Jadwal contoh
+// Nanti bisa diedit sendiri
+
+const jadwalDefault = {
+
+    senin: [
+        {
+            jam: "07:00",
+            pelajaran: "Matematika"
+        },
+        {
+            jam: "08:00",
+            pelajaran: "Bahasa Indonesia"
+        }
+    ],
+
+    selasa: [
+        {
+            jam: "07:00",
+            pelajaran: "IPA"
+        },
+        {
+            jam: "08:00",
+            pelajaran: "Bahasa Inggris"
+        }
+    ],
+
+    rabu: [
+        {
+            jam: "07:00",
+            pelajaran: "IPS"
+        }
+    ],
+
+    kamis: [
+        {
+            jam: "07:00",
+            pelajaran: "PJOK"
+        }
+    ],
+
+    jumat: [
+        {
+            jam: "07:00",
+            pelajaran: "Agama"
+        }
+    ]
+
+};
+
+
+// Menampilkan jadwal
+
+function tampilkanJadwal() {
+
+    let data =
+        localStorage.getItem("jadwal");
+
+    if (data) {
+
+        return JSON.parse(data);
+
+    }
+
+    localStorage.setItem(
+        "jadwal",
+        JSON.stringify(jadwalDefault)
+    );
+
+    return jadwalDefault;
+}
+
+
+const jadwal =
+    tampilkanJadwal();
+
+
+function tampilkanHari(
+    id,
+    data
+) {
+
+    const element =
+        document.getElementById(id);
+
+    element.innerHTML = "";
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+        element.innerHTML =
+            "<p>Belum ada jadwal.</p>";
+
+        return;
+    }
+
+
+    data.forEach(item => {
+
+        element.innerHTML += `
+
+            <div class="jadwal-item">
+
+                <span class="jam">
+                    ${item.jam}
+                </span>
+
+                <span>
+                    ${item.pelajaran}
+                </span>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+tampilkanHari(
+    "senin",
+    jadwal.senin
+);
+
+tampilkanHari(
+    "selasa",
+    jadwal.selasa
+);
+
+tampilkanHari(
+    "rabu",
+    jadwal.rabu
+);
+
+tampilkanHari(
+    "kamis",
+    jadwal.kamis
+);
+
+tampilkanHari(
+    "jumat",
+    jadwal.jumat
+);
+
+
+function editJadwal() {
+
+    window.location.href =
+        "edit-jadwal.html";
+
+}
+
+
+function kembali() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
