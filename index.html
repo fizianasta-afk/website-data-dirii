@@ -160,21 +160,38 @@
 
     <script>
 
-        function register() {
-            alert("Halaman Register akan dibuat pada langkah berikutnya.");
-        }
+     function register() {
+    window.location.href = "register.html";
+}
 
-        function jadwal() {
-            alert("Halaman Jadwal Pelajaran akan dibuat pada langkah berikutnya.");
-        }
+function jadwal() {
+    alert("📅 Halaman Jadwal Pelajaran akan dibuat.");
+}
 
-        function editJadwal() {
-            alert("Halaman Edit Jadwal dengan PIN akan dibuat pada langkah berikutnya.");
-        }
+function editJadwal() {
+    alert("⚙️ Halaman Edit Jadwal akan dibuat.");
+}
 
-        function hasilKarya() {
-            alert("Halaman Hasil Karya Excel akan dibuat pada langkah berikutnya.");
-        }
+function hasilKarya() {
+    alert("📊 Halaman Hasil Karya Excel akan dibuat.");
+}
+
+
+// Menampilkan data dari localStorage
+document.getElementById("nama").textContent =
+    localStorage.getItem("nama") || "Belum diisi";
+
+document.getElementById("sekolah").textContent =
+    localStorage.getItem("sekolah") || "Belum diisi";
+
+document.getElementById("umur").textContent =
+    localStorage.getItem("umur") || "Belum diisi";
+
+document.getElementById("cita").textContent =
+    localStorage.getItem("cita") || "Belum diisi";
+
+document.getElementById("hobi").textContent =
+    localStorage.getItem("hobi") || "Belum diisi";
 
     </script>
 
