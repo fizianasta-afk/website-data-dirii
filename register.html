@@ -377,6 +377,20 @@
 
 
 <script>
+   
+    const sudahLogin =
+    localStorage.getItem(
+        "sudahLogin"
+    );
+
+if (
+    sudahLogin !== "true"
+) {
+
+    window.location.href =
+        "login.html";
+
+}
 const fotoInput =
     document.getElementById("foto");
 
