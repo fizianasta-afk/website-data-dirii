@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -9,166 +10,231 @@
 
     <title>Jadwal Pelajaran</title>
 
+
     <style>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f2f5f9;
+        * {
+            box-sizing: border-box;
         }
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            background: #f1f5f9;
+
+            color: #1e293b;
+
+        }
+
 
         header {
-            background: #2563eb;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #059669,
+                    #10b981
+                );
+
             color: white;
+
             text-align: center;
-            padding: 25px;
+
+            padding: 35px 20px;
+
         }
+
+
+        header h1 {
+
+            margin: 0;
+
+        }
+
 
         .container {
-            max-width: 900px;
+
+            max-width: 1000px;
+
             margin: 30px auto;
+
             padding: 20px;
+
         }
+
 
         .card {
+
             background: white;
-            padding: 20px;
+
+            padding: 25px;
+
             margin-bottom: 20px;
-            border-radius: 15px;
+
+            border-radius: 18px;
 
             box-shadow:
-                0 5px 15px rgba(0,0,0,0.08);
+                0 8px 25px
+                rgba(0,0,0,0.08);
+
         }
 
-        h2 {
-            margin-top: 0;
-        }
 
-        .jadwal-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .hari {
 
-            padding: 15px;
+            margin-top: 20px;
 
-            margin-top: 10px;
+            padding: 20px;
 
             background: #f8fafc;
 
-            border-radius: 10px;
+            border-radius: 15px;
+
         }
+
+
+        .hari h2 {
+
+            margin-top: 0;
+
+            color: #059669;
+
+        }
+
+
+        .jadwal-item {
+
+            background: white;
+
+            padding: 17px;
+
+            margin-top: 12px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+        }
+
 
         .jam {
+
             font-weight: bold;
-            color: #2563eb;
+
+            color: #059669;
+
+            font-size: 17px;
+
         }
 
+
+        .mapel {
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            margin-top: 7px;
+
+        }
+
+
+        .detail {
+
+            color: #64748b;
+
+            margin-top: 7px;
+
+            line-height: 1.6;
+
+        }
+
+
         button {
+
             width: 100%;
-            padding: 15px;
+
+            padding: 14px;
+
+            margin-top: 15px;
 
             border: none;
+
             border-radius: 10px;
 
-            background: #2563eb;
+            background: #059669;
+
             color: white;
 
             font-size: 16px;
 
             cursor: pointer;
 
-            margin-top: 10px;
         }
+
 
         button:hover {
-            background: #1d4ed8;
+
+            background: #047857;
+
         }
+
 
         .kembali {
+
             background: #64748b;
+
         }
 
+
         .kembali:hover {
+
             background: #475569;
+
         }
+
 
     </style>
 
 </head>
+
 
 <body>
 
 
 <header>
 
-    <h1>📅 Jadwal Pelajaran</h1>
+    <h1>
+        📅 Jadwal Pelajaran
+    </h1>
 
     <p>
-        Jadwal pelajaran kamu
+        Jadwal sekolah saya
     </p>
 
 </header>
 
 
+
 <div class="container">
 
 
-    <!-- SENIN -->
-
     <div class="card">
 
-        <h2>📘 Senin</h2>
-
-        <div id="senin"></div>
+        <div id="jadwal"></div>
 
     </div>
 
 
-    <!-- SELASA -->
-
-    <div class="card">
-
-        <h2>📗 Selasa</h2>
-
-        <div id="selasa"></div>
-
-    </div>
-
-
-    <!-- RABU -->
-
-    <div class="card">
-
-        <h2>📙 Rabu</h2>
-
-        <div id="rabu"></div>
-
-    </div>
-
-
-    <!-- KAMIS -->
-
-    <div class="card">
-
-        <h2>📕 Kamis</h2>
-
-        <div id="kamis"></div>
-
-    </div>
-
-
-    <!-- JUMAT -->
-
-    <div class="card">
-
-        <h2>📒 Jumat</h2>
-
-        <div id="jumat"></div>
-
-    </div>
-
-
-    <button onclick="editJadwal()">
+    <button
+        onclick="edit()">
 
         ⚙️ Edit Jadwal
 
@@ -187,159 +253,175 @@
 </div>
 
 
+
 <script>
 
 
-// Jadwal contoh
-// Nanti bisa diedit sendiri
+const hariList = [
 
-const jadwalDefault = {
+    "senin",
+    "selasa",
+    "rabu",
+    "kamis",
+    "jumat"
 
-    senin: [
-        {
-            jam: "07:00",
-            pelajaran: "Matematika"
-        },
-        {
-            jam: "08:00",
-            pelajaran: "Bahasa Indonesia"
-        }
-    ],
+];
 
-    selasa: [
-        {
-            jam: "07:00",
-            pelajaran: "IPA"
-        },
-        {
-            jam: "08:00",
-            pelajaran: "Bahasa Inggris"
-        }
-    ],
 
-    rabu: [
-        {
-            jam: "07:00",
-            pelajaran: "IPS"
-        }
-    ],
+let jadwal = {
 
-    kamis: [
-        {
-            jam: "07:00",
-            pelajaran: "PJOK"
-        }
-    ],
-
-    jumat: [
-        {
-            jam: "07:00",
-            pelajaran: "Agama"
-        }
-    ]
+    senin: [],
+    selasa: [],
+    rabu: [],
+    kamis: [],
+    jumat: []
 
 };
 
 
-// Menampilkan jadwal
-
-function tampilkanJadwal() {
-
-    let data =
-        localStorage.getItem("jadwal");
-
-    if (data) {
-
-        return JSON.parse(data);
-
-    }
-
-    localStorage.setItem(
-        "jadwal",
-        JSON.stringify(jadwalDefault)
+const data =
+    localStorage.getItem(
+        "jadwal"
     );
 
-    return jadwalDefault;
+
+if (data) {
+
+    jadwal =
+        JSON.parse(data);
+
 }
 
 
-const jadwal =
-    tampilkanJadwal();
+
+function tampilkan() {
+
+    const container =
+        document.getElementById(
+            "jadwal"
+        );
 
 
-function tampilkanHari(
-    id,
-    data
-) {
-
-    const element =
-        document.getElementById(id);
-
-    element.innerHTML = "";
+    container.innerHTML = "";
 
 
-    if (
-        !data ||
-        data.length === 0
-    ) {
-
-        element.innerHTML =
-            "<p>Belum ada jadwal.</p>";
-
-        return;
-    }
+    hariList.forEach(
+        hari => {
 
 
-    data.forEach(item => {
+        const div =
+            document.createElement(
+                "div"
+            );
 
-        element.innerHTML += `
+        div.className =
+            "hari";
 
-            <div class="jadwal-item">
 
-                <span class="jam">
-                    ${item.jam}
-                </span>
+        const judul =
+            document.createElement(
+                "h2"
+            );
 
-                <span>
-                    ${item.pelajaran}
-                </span>
+        judul.textContent =
+            "📚 " +
+            hari.charAt(0)
+                .toUpperCase()
+            +
+            hari.slice(1);
 
-            </div>
 
-        `;
+        div.appendChild(
+            judul
+        );
+
+
+        const dataHari =
+            jadwal[hari] || [];
+
+
+        if (
+            dataHari.length === 0
+        ) {
+
+            const kosong =
+                document.createElement(
+                    "p"
+                );
+
+            kosong.textContent =
+                "Belum ada jadwal.";
+
+            div.appendChild(
+                kosong
+            );
+
+        }
+
+
+        dataHari.forEach(
+            item => {
+
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "jadwal-item";
+
+
+            row.innerHTML = `
+
+                <div class="jam">
+
+                    🕐 ${item.mulai}
+                    -
+                    ${item.selesai}
+
+                </div>
+
+                <div class="mapel">
+
+                    📚 ${item.pelajaran}
+
+                </div>
+
+                <div class="detail">
+
+                    👨‍🏫 Guru:
+                    ${item.guru}
+
+                    <br>
+
+                    🚪 Ruang:
+                    ${item.ruang}
+
+                </div>
+
+            `;
+
+
+            div.appendChild(
+                row
+            );
+
+        });
+
+
+        container.appendChild(
+            div
+        );
+
 
     });
 
 }
 
 
-tampilkanHari(
-    "senin",
-    jadwal.senin
-);
 
-tampilkanHari(
-    "selasa",
-    jadwal.selasa
-);
-
-tampilkanHari(
-    "rabu",
-    jadwal.rabu
-);
-
-tampilkanHari(
-    "kamis",
-    jadwal.kamis
-);
-
-tampilkanHari(
-    "jumat",
-    jadwal.jumat
-);
-
-
-function editJadwal() {
+function edit() {
 
     window.location.href =
         "edit-jadwal.html";
@@ -353,6 +435,9 @@ function kembali() {
         "index.html";
 
 }
+
+
+tampilkan();
 
 
 </script>
