@@ -2,197 +2,767 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Website Data Diri</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Profil Saya</title>
+
 
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f2f5f9;
-            color: #222;
+
+        * {
+            box-sizing: border-box;
         }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dbeafe,
+                    #f8fafc,
+                    #e0e7ff
+                );
+
+            min-height: 100vh;
+
+            color: #1e293b;
+
+        }
+
+
+        /* =====================
+           HEADER
+        ===================== */
 
         header {
-            background: #2563eb;
-            color: white;
+
+            padding: 60px 20px;
+
             text-align: center;
-            padding: 30px 15px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            border-bottom-left-radius: 40px;
+
+            border-bottom-right-radius: 40px;
+
         }
+
+
+        header .icon {
+
+            font-size: 70px;
+
+            margin-bottom: 10px;
+
+        }
+
 
         header h1 {
-            margin: 0 0 10px;
+
+            margin: 0;
+
+            font-size: 36px;
+
         }
+
+
+        header p {
+
+            margin-top: 10px;
+
+            opacity: 0.9;
+
+            font-size: 17px;
+
+        }
+
+
+        /* =====================
+           CONTAINER
+        ===================== */
 
         .container {
-            max-width: 800px;
-            margin: 30px auto;
+
+            max-width: 1000px;
+
+            margin:
+                -30px auto
+                40px;
+
             padding: 20px;
+
         }
+
+
+        /* =====================
+           CARD
+        ===================== */
 
         .card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+            background: rgba(
+                255,
+                255,
+                255,
+                0.95
+            );
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    0.10
+                );
+
         }
+
+
+        .card h2 {
+
+            margin-top: 0;
+
+        }
+
+
+        /* =====================
+           DATA DIRI
+        ===================== */
+
+        .data-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    1fr
+                );
+
+            gap: 15px;
+
+        }
+
 
         .data {
-            margin: 12px 0;
-            padding: 12px;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
             background: #f8fafc;
-            border-radius: 8px;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            transition:
+                transform
+                0.2s;
+
         }
 
-        .buttons {
+
+        .data:hover {
+
+            transform:
+                translateY(-3px);
+
+        }
+
+
+        .data .label {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .data .value {
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            color: #1e293b;
+
+        }
+
+
+        /* =====================
+           MENU
+        ===================== */
+
+        .menu-grid {
+
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    1fr
+                );
+
+            gap: 18px;
+
         }
 
-        button {
+
+        .menu {
+
             border: none;
-            padding: 15px;
-            border-radius: 10px;
-            background: #2563eb;
-            color: white;
-            font-size: 16px;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            text-align: left;
+
             cursor: pointer;
+
+            color: white;
+
+            font-size: 16px;
+
+            min-height: 140px;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+
         }
 
-        button:hover {
-            background: #1d4ed8;
+
+        .menu:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 15px 25px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.15
+                );
+
         }
+
+
+        .menu .emoji {
+
+            font-size: 40px;
+
+            display: block;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .menu strong {
+
+            display: block;
+
+            font-size: 19px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .menu span {
+
+            opacity: 0.9;
+
+            font-size: 14px;
+
+        }
+
+
+        .register {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #3b82f6
+                );
+
+        }
+
+
+        .jadwal {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #059669,
+                    #10b981
+                );
+
+        }
+
+
+        .edit {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d97706,
+                    #f59e0b
+                );
+
+        }
+
+
+        .karya {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #8b5cf6
+                );
+
+        }
+
+
+        /* =====================
+           FOOTER
+        ===================== */
 
         footer {
+
             text-align: center;
-            padding: 20px;
-            color: #666;
+
+            padding:
+                25px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
         }
 
-        @media (max-width: 600px) {
-            .buttons {
-                grid-template-columns: 1fr;
+
+        /* =====================
+           MOBILE
+        ===================== */
+
+        @media (
+            max-width: 650px
+        ) {
+
+            header {
+
+                padding: 45px 15px;
+
             }
+
+
+            header h1 {
+
+                font-size: 28px;
+
+            }
+
+
+            .container {
+
+                margin-top: -20px;
+
+                padding: 15px;
+
+            }
+
+
+            .data-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .menu-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .card {
+
+                padding: 20px;
+
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <header>
-        <h1>👤 Data Diri Saya</h1>
-        <p>Website Profil Pribadi</p>
-    </header>
 
-    <div class="container">
+<!-- =====================
+     HEADER
+===================== -->
 
-        <!-- DATA DIRI -->
-        <div class="card">
+<header>
 
-            <h2>📋 Data Diri</h2>
+    <div class="icon">
+        👤
+    </div>
+
+    <h1>
+        Profil Saya
+    </h1>
+
+    <p>
+        Selamat datang di website data diri saya
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <!-- =====================
+         DATA DIRI
+    ===================== -->
+
+    <div class="card">
+
+        <h2>
+            📋 Data Diri
+        </h2>
+
+        <div class="data-grid">
+
 
             <div class="data">
-                <strong>Nama:</strong>
-                <span id="nama">Belum diisi</span>
+
+                <span class="label">
+                    👤 Nama
+                </span>
+
+                <span
+                    class="value"
+                    id="nama">
+
+                    Belum diisi
+
+                </span>
+
             </div>
+
+
 
             <div class="data">
-                <strong>Sekolah:</strong>
-                <span id="sekolah">Belum diisi</span>
+
+                <span class="label">
+                    🏫 Sekolah
+                </span>
+
+                <span
+                    class="value"
+                    id="sekolah">
+
+                    Belum diisi
+
+                </span>
+
             </div>
+
+
 
             <div class="data">
-                <strong>Umur:</strong>
-                <span id="umur">Belum diisi</span>
+
+                <span class="label">
+                    🎂 Umur
+                </span>
+
+                <span
+                    class="value"
+                    id="umur">
+
+                    Belum diisi
+
+                </span>
+
             </div>
+
+
 
             <div class="data">
-                <strong>Cita-cita:</strong>
-                <span id="cita">Belum diisi</span>
+
+                <span class="label">
+                    🎯 Cita-cita
+                </span>
+
+                <span
+                    class="value"
+                    id="cita">
+
+                    Belum diisi
+
+                </span>
+
             </div>
+
+
 
             <div class="data">
-                <strong>Hobi:</strong>
-                <span id="hobi">Belum diisi</span>
-            </div>
 
-        </div>
+                <span class="label">
+                    🎮 Hobi
+                </span>
 
+                <span
+                    class="value"
+                    id="hobi">
 
-        <!-- MENU -->
-        <div class="card">
+                    Belum diisi
 
-            <h2>📌 Menu</h2>
-
-            <div class="buttons">
-
-                <button onclick="register()">
-                    📝 Register Data Diri
-                </button>
-
-                <button onclick="jadwal()">
-                    📅 Masuk Jadwal Pelajaran
-                </button>
-
-                <button onclick="editJadwal()">
-                    ⚙️ Edit Jadwal Pelajaran
-                </button>
-
-                <button onclick="hasilKarya()">
-                    📊 Hasil Karya Excel
-                </button>
+                </span>
 
             </div>
+
 
         </div>
 
     </div>
 
 
-    <footer>
-        Website Data Diri © 2026
-    </footer>
+
+    <!-- =====================
+         MENU
+    ===================== -->
+
+    <div class="card">
+
+        <h2>
+            🚀 Menu Utama
+        </h2>
 
 
-    <script>
+        <div class="menu-grid">
 
-     function register() {
-    window.location.href = "register.html";
+
+            <button
+                class="menu register"
+                onclick="register()">
+
+                <span class="emoji">
+                    📝
+                </span>
+
+                <strong>
+                    Register Data Diri
+                </strong>
+
+                <span>
+                    Isi atau ubah data profil
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="menu jadwal"
+                onclick="jadwal()">
+
+                <span class="emoji">
+                    📅
+                </span>
+
+                <strong>
+                    Jadwal Pelajaran
+                </strong>
+
+                <span>
+                    Lihat jadwal pelajaran
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="menu edit"
+                onclick="editJadwal()">
+
+                <span class="emoji">
+                    ⚙️
+                </span>
+
+                <strong>
+                    Edit Jadwal
+                </strong>
+
+                <span>
+                    Atur jadwal dengan PIN
+                </span>
+
+            </button>
+
+
+
+            <button
+                class="menu karya"
+                onclick="hasilKarya()">
+
+                <span class="emoji">
+                    📊
+                </span>
+
+                <strong>
+                    Hasil Karya Excel
+                </strong>
+
+                <span>
+                    Lihat hasil karya saya
+                </span>
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<footer>
+
+    Website Data Diri © 2026
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================
+   TOMBOL
+===================== */
+
+
+function register() {
+
+    window.location.href =
+        "register.html";
+
 }
+
 
 function jadwal() {
-    window.location.href = "jadwal.html";
+
+    window.location.href =
+        "jadwal.html";
+
 }
+
 
 function editJadwal() {
-    window.location.href = "edit-jadwal.html";
+
+    window.location.href =
+        "edit-jadwal.html";
+
 }
+
 
 function hasilKarya() {
-    window.location.href = "hasil-karya.html";
+
+    window.location.href =
+        "hasil-karya.html";
+
 }
 
-// Menampilkan data dari localStorage
-document.getElementById("nama").textContent =
-    localStorage.getItem("nama") || "Belum diisi";
 
-document.getElementById("sekolah").textContent =
-    localStorage.getItem("sekolah") || "Belum diisi";
+/* =====================
+   DATA DIRI
+===================== */
 
-document.getElementById("umur").textContent =
-    localStorage.getItem("umur") || "Belum diisi";
 
-document.getElementById("cita").textContent =
-    localStorage.getItem("cita") || "Belum diisi";
+document.getElementById("nama")
+    .textContent =
+    localStorage.getItem("nama")
+    || "Belum diisi";
 
-document.getElementById("hobi").textContent =
-    localStorage.getItem("hobi") || "Belum diisi";
 
-    </script>
+document.getElementById("sekolah")
+    .textContent =
+    localStorage.getItem("sekolah")
+    || "Belum diisi";
+
+
+document.getElementById("umur")
+    .textContent =
+    localStorage.getItem("umur")
+    || "Belum diisi";
+
+
+document.getElementById("cita")
+    .textContent =
+    localStorage.getItem("cita")
+    || "Belum diisi";
+
+
+document.getElementById("hobi")
+    .textContent =
+    localStorage.getItem("hobi")
+    || "Belum diisi";
+
+
+</script>
+
 
 </body>
 
