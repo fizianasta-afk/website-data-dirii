@@ -316,15 +316,106 @@
                 placeholder="Contoh: Kelas 9A">
 
 
-            <button onclick="tambahJadwal()">
+           <button onclick="tambahJadwal()">
 
-                ➕ Tambahkan Jadwal
+    ➕ Tambahkan Jadwal
 
-            </button>
+</button>
 
-        </div>
+<button
+    id="batalEdit"
+    onclick="batalEdit()"
+    style="display:none; background:#64748b;">
+
+    ❌ Batal Edit
+
+</button>
+
+function editJadwal(
+    hari,
+    index
+) {
+
+    const item =
+        jadwal[hari][index];
 
 
+    document.getElementById(
+        "hari"
+    ).value = hari;
+
+
+    document.getElementById(
+        "mulai"
+    ).value = item.mulai;
+
+
+    document.getElementById(
+        "selesai"
+    ).value = item.selesai;
+
+
+    document.getElementById(
+        "pelajaran"
+    ).value = item.pelajaran;
+
+
+    document.getElementById(
+        "guru"
+    ).value = item.guru;
+
+
+    document.getElementById(
+        "ruang"
+    ).value = item.ruang;
+
+
+    sedangEdit = {
+
+        hari: hari,
+
+        index: index
+
+    };
+
+
+    document.getElementById(
+        "batalEdit"
+    ).style.display =
+        "block";
+
+
+    const tombol =
+        document.querySelector(
+            "#editor button"
+        );
+
+
+    tombol.textContent =
+        "💾 Simpan Perubahan";
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+    const tombol =
+        document.querySelector(
+            "#editor button"
+        );
+
+
+    tombol.textContent =
+        "💾 Simpan Perubahan";
+
+}
 
         <!-- =========================
              DAFTAR
@@ -377,7 +468,7 @@ let jadwal = {
 
 };
 
-
+let sedangEdit = null;
 const hariList = [
     "senin",
     "selasa",
@@ -483,34 +574,22 @@ function ambilJadwal() {
 function tambahJadwal() {
 
     const hari =
-        document.getElementById(
-            "hari"
-        ).value;
+        document.getElementById("hari").value;
 
     const mulai =
-        document.getElementById(
-            "mulai"
-        ).value;
+        document.getElementById("mulai").value;
 
     const selesai =
-        document.getElementById(
-            "selesai"
-        ).value;
+        document.getElementById("selesai").value;
 
     const pelajaran =
-        document.getElementById(
-            "pelajaran"
-        ).value.trim();
+        document.getElementById("pelajaran").value.trim();
 
     const guru =
-        document.getElementById(
-            "guru"
-        ).value.trim();
+        document.getElementById("guru").value.trim();
 
     const ruang =
-        document.getElementById(
-            "ruang"
-        ).value.trim();
+        document.getElementById("ruang").value.trim();
 
 
     if (
@@ -521,9 +600,7 @@ function tambahJadwal() {
         ruang === ""
     ) {
 
-        alert(
-            "⚠️ Semua data harus diisi!"
-        );
+        alert("⚠️ Semua data harus diisi!");
 
         return;
 
@@ -541,6 +618,40 @@ function tambahJadwal() {
     }
 
 
+    // =========================
+    // MODE EDIT
+    // =========================
+
+    if (sedangEdit !== null) {
+
+        const hariLama =
+            sedangEdit.hari;
+
+        const index =
+            sedangEdit.index;
+
+
+        jadwal[hariLama].splice(
+            index,
+            1
+        );
+
+
+        sedangEdit = null;
+
+
+        document.querySelector(
+            "#editor button"
+        ).textContent =
+            "➕ Tambahkan Jadwal";
+
+    }
+
+
+    // =========================
+    // TAMBAH DATA
+    // =========================
+
     jadwal[hari].push({
 
         mulai: mulai,
@@ -556,6 +667,8 @@ function tambahJadwal() {
     });
 
 
+    // Urutkan berdasarkan jam
+
     jadwal[hari].sort(
         (a, b) =>
             a.mulai.localeCompare(
@@ -564,26 +677,7 @@ function tambahJadwal() {
     );
 
 
-    document.getElementById(
-        "mulai"
-    ).value = "";
-
-    document.getElementById(
-        "selesai"
-    ).value = "";
-
-    document.getElementById(
-        "pelajaran"
-    ).value = "";
-
-    document.getElementById(
-        "guru"
-    ).value = "";
-
-    document.getElementById(
-        "ruang"
-    ).value = "";
-
+    kosongkanForm();
 
     tampilkan();
 
@@ -687,21 +781,32 @@ function tampilkan() {
 
                     </div>
 
-                    <div class="aksi">
+                   <div class="aksi">
 
-                        <button
-                            class="hapus"
-                            onclick="
-                            hapusJadwal(
-                                '${hari}',
-                                ${index}
-                            )">
+    <button
+        onclick="
+        editJadwal(
+            '${hari}',
+            ${index}
+        )">
 
-                            🗑️ Hapus
+        ✏️ Edit
 
-                        </button>
+    </button>
 
-                    </div>
+    <button
+        class="hapus"
+        onclick="
+        hapusJadwal(
+            '${hari}',
+            ${index}
+        )">
+
+        🗑️ Hapus
+
+    </button>
+
+</div>
 
                 `;
 
@@ -721,7 +826,38 @@ function tampilkan() {
     });
 
 }
+    function batalEdit() {
 
+    sedangEdit = null;
+
+    kosongkanForm();
+
+    document.getElementById(
+        "batalEdit"
+    ).style.display = "none";
+
+    const tombol =
+        document.querySelector(
+            "#editor button"
+        );
+
+    tombol.textContent =
+        "➕ Tambahkan Jadwal";
+
+}
+function kosongkanForm() {
+
+    document.getElementById("mulai").value = "";
+
+    document.getElementById("selesai").value = "";
+
+    document.getElementById("pelajaran").value = "";
+
+    document.getElementById("guru").value = "";
+
+    document.getElementById("ruang").value = "";
+
+}
 
 // ==========================
 // HAPUS
