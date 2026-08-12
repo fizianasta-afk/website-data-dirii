@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Jadwal Pelajaran</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .hapus {
+            background: #dc2626;
+        }
+
+        .hapus:hover {
+            background: #b91c1c;
+        }
+
+        .kembali {
+            background: #64748b;
+        }
+
+        .kembali:hover {
+            background: #475569;
+        }
+
+        .hari-card {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .jadwal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+
+            padding: 12px;
+            margin-top: 10px;
+
+            background: white;
+            border-radius: 8px;
+        }
+
+        .jadwal-info {
+            flex: 1;
+        }
+
+        .jam {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .kecil {
+            width: auto;
+            margin: 0;
+            padding: 8px 12px;
+        }
+
+        #editor {
+            display: none;
+        }
+
+        #login {
+            display: block;
+        }
+
+        .pesan {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <h1>⚙️ Edit Jadwal Pelajaran</h1>
+
+    <p>
+        Atur jadwal pelajaran kamu sendiri
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- LOGIN PIN -->
+
+    <div class="card" id="login">
+
+        <h2>🔐 Masukkan PIN</h2>
+
+        <p>
+            Masukkan PIN yang kamu buat saat Register.
+        </p>
+
+        <label>PIN</label>
+
+        <input
+            type="password"
+            id="pin"
+            placeholder="Masukkan PIN"
+            maxlength="6">
+
+        <button onclick="cekPIN()">
+            🔓 Masuk
+        </button>
+
+        <div
+            class="pesan"
+            id="pesan">
+        </div>
+
+        <button
+            class="kembali"
+            onclick="kembali()">
+
+            🏠 Kembali
+
+        </button>
+
+    </div>
+
+
+    <!-- EDITOR -->
+
+    <div id="editor">
+
+
+        <!-- TAMBAH JADWAL -->
+
+        <div class="card">
+
+            <h2>➕ Tambah Jadwal</h2>
+
+            <label>Hari</label>
+
+            <select id="hari">
+
+                <option value="senin">
+                    Senin
+                </option>
+
+                <option value="selasa">
+                    Selasa
+                </option>
+
+                <option value="rabu">
+                    Rabu
+                </option>
+
+                <option value="kamis">
+                    Kamis
+                </option>
+
+                <option value="jumat">
+                    Jumat
+                </option>
+
+            </select>
+
+
+            <label>Jam</label>
+
+            <input
+                type="time"
+                id="jam">
+
+
+            <label>Mata Pelajaran</label>
+
+            <input
+                type="text"
+                id="pelajaran"
+                placeholder="Contoh: Matematika">
+
+
+            <button onclick="tambahJadwal()">
+
+                ➕ Tambah Jadwal
+
+            </button>
+
+        </div>
+
+
+        <!-- DAFTAR JADWAL -->
+
+        <div class="card">
+
+            <h2>📅 Jadwal Saat Ini</h2>
+
+            <div id="daftarJadwal"></div>
+
+        </div>
+
+
+        <button onclick="simpanJadwal()">
+
+            💾 Simpan Jadwal
+
+        </button>
+
+
+        <button
+            class="kembali"
+            onclick="kembali()">
+
+            🏠 Kembali
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+let jadwal = {};
+
+
+const hariList = [
+    "senin",
+    "selasa",
+    "rabu",
+    "kamis",
+    "jumat"
+];
+
+
+// ============================
+// CEK PIN
+// ============================
+
+function cekPIN() {
+
+    const pinInput =
+        document.getElementById("pin").value;
+
+    const pinBenar =
+        localStorage.getItem("pin");
+
+
+    if (!pinBenar) {
+
+        document.getElementById("pesan").textContent =
+            "⚠️ Kamu belum membuat PIN.";
+
+        return;
+    }
+
+
+    if (pinInput === pinBenar) {
+
+        document.getElementById("login").style.display =
+            "none";
+
+        document.getElementById("editor").style.display =
+            "block";
+
+        ambilJadwal();
+
+    } else {
+
+        document.getElementById("pesan").textContent =
+            "❌ PIN salah!";
+
+    }
+
+}
+
+
+// ============================
+// AMBIL JADWAL
+// ============================
+
+function ambilJadwal() {
+
+    const data =
+        localStorage.getItem("jadwal");
+
+
+    if (data) {
+
+        jadwal = JSON.parse(data);
+
+    } else {
+
+        jadwal = {
+
+            senin: [],
+            selasa: [],
+            rabu: [],
+            kamis: [],
+            jumat: []
+
+        };
+
+    }
+
+
+    tampilkanJadwal();
+
+}
+
+
+// ============================
+// TAMBAH JADWAL
+// ============================
+
+function tambahJadwal() {
+
+    const hari =
+        document.getElementById("hari").value;
+
+    const jam =
+        document.getElementById("jam").value;
+
+    const pelajaran =
+        document.getElementById("pelajaran").value;
+
+
+    if (
+        jam === "" ||
+        pelajaran === ""
+    ) {
+
+        alert(
+            "⚠️ Jam dan mata pelajaran harus diisi!"
+        );
+
+        return;
+
+    }
+
+
+    if (!jadwal[hari]) {
+
+        jadwal[hari] = [];
+
+    }
+
+
+    jadwal[hari].push({
+
+        jam: jam,
+
+        pelajaran: pelajaran
+
+    });
+
+
+    // Urutkan berdasarkan jam
+
+    jadwal[hari].sort(
+        (a, b) =>
+            a.jam.localeCompare(b.jam)
+    );
+
+
+    document.getElementById("jam").value = "";
+
+    document.getElementById("pelajaran").value = "";
+
+
+    tampilkanJadwal();
+
+}
+
+
+// ============================
+// TAMPILKAN JADWAL
+// ============================
+
+function tampilkanJadwal() {
+
+    const container =
+        document.getElementById("daftarJadwal");
+
+
+    container.innerHTML = "";
+
+
+    hariList.forEach(hari => {
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "hari-card";
+
+
+        const judul =
+            document.createElement("h3");
+
+        judul.textContent =
+            hari.toUpperCase();
+
+
+        card.appendChild(judul);
+
+
+        if (
+            !jadwal[hari] ||
+            jadwal[hari].length === 0
+        ) {
+
+            const kosong =
+                document.createElement("p");
+
+            kosong.textContent =
+                "Belum ada jadwal.";
+
+            card.appendChild(kosong);
+
+        } else {
+
+
+            jadwal[hari].forEach(
+                (item, index) => {
+
+
+                const row =
+                    document.createElement("div");
+
+                row.className =
+                    "jadwal-item";
+
+
+                const info =
+                    document.createElement("div");
+
+                info.className =
+                    "jadwal-info";
+
+
+                info.innerHTML = `
+
+                    <span class="jam">
+                        ${item.jam}
+                    </span>
+
+                    -
+                    ${item.pelajaran}
+
+                `;
+
+
+                const hapus =
+                    document.createElement("button");
+
+                hapus.textContent =
+                    "🗑️ Hapus";
+
+                hapus.className =
+                    "hapus kecil";
+
+
+                hapus.onclick = function() {
+
+                    hapusJadwal(
+                        hari,
+                        index
+                    );
+
+                };
+
+
+                row.appendChild(info);
+
+                row.appendChild(hapus);
+
+                card.appendChild(row);
+
+            });
+
+        }
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+// ============================
+// HAPUS
+// ============================
+
+function hapusJadwal(
+    hari,
+    index
+) {
+
+    if (
+        confirm(
+            "Yakin ingin menghapus jadwal ini?"
+        )
+    ) {
+
+        jadwal[hari].splice(
+            index,
+            1
+        );
+
+        tampilkanJadwal();
+
+    }
+
+}
+
+
+// ============================
+// SIMPAN
+// ============================
+
+function simpanJadwal() {
+
+    localStorage.setItem(
+        "jadwal",
+        JSON.stringify(jadwal)
+    );
+
+
+    alert(
+        "✅ Jadwal berhasil disimpan!"
+    );
+
+
+    window.location.href =
+        "jadwal.html";
+
+}
+
+
+// ============================
+// KEMBALI
+// ============================
+
+function kembali() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
