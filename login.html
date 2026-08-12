@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Data Diri</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            padding: 20px;
+
+        }
+
+
+        .container {
+
+            width: 100%;
+
+            max-width: 430px;
+
+        }
+
+
+        .card {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.2
+                );
+
+        }
+
+
+        .logo {
+
+            text-align: center;
+
+            font-size: 65px;
+
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .deskripsi {
+
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            font-weight: bold;
+
+            margin-top: 15px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border:
+                1px solid
+                #cbd5e1;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        .register {
+
+            background: #7c3aed;
+
+        }
+
+
+        .register:hover {
+
+            background: #6d28d9;
+
+        }
+
+
+        .info {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="card">
+
+
+        <div class="logo">
+            🔐
+        </div>
+
+
+        <h1>
+            Selamat Datang
+        </h1>
+
+
+        <p class="deskripsi">
+
+            Masuk ke website
+            Data Diri kamu
+
+        </p>
+
+
+        <label>
+            📧 Nama pengguna
+        </label>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Masukkan nama pengguna">
+
+
+        <label>
+            🔑 PIN
+        </label>
+
+        <input
+            type="password"
+            id="pin"
+            placeholder="Masukkan PIN">
+
+
+        <button
+            onclick="login()">
+
+            🔓 Masuk
+
+        </button>
+
+
+        <button
+            class="register"
+            onclick="daftar()">
+
+            📝 Belum punya akun?
+            Daftar
+
+        </button>
+
+
+        <p class="info">
+
+            Data akun disimpan
+            di browser ini.
+
+        </p>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+function login() {
+
+
+    const username =
+        document.getElementById(
+            "username"
+        ).value.trim();
+
+
+    const pin =
+        document.getElementById(
+            "pin"
+        ).value.trim();
+
+
+    const usernameTersimpan =
+        localStorage.getItem(
+            "username"
+        );
+
+
+    const pinTersimpan =
+        localStorage.getItem(
+            "pin"
+        );
+
+
+    if (
+        !username ||
+        !pin
+    ) {
+
+        alert(
+            "⚠️ Nama pengguna dan PIN harus diisi!"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        username ===
+            usernameTersimpan
+        &&
+        pin ===
+            pinTersimpan
+    ) {
+
+
+        localStorage.setItem(
+            "sudahLogin",
+            "true"
+        );
+
+
+        alert(
+            "✅ Login berhasil!"
+        );
+
+
+        window.location.href =
+            "index.html";
+
+    }
+
+    else {
+
+        alert(
+            "❌ Nama pengguna atau PIN salah!"
+        );
+
+    }
+
+}
+
+
+function daftar() {
+
+    window.location.href =
+        "register.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
