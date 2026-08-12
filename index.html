@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Website Data Diri</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
+            color: #222;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .data {
+            margin: 12px 0;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        button {
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>👤 Data Diri Saya</h1>
+        <p>Website Profil Pribadi</p>
+    </header>
+
+    <div class="container">
+
+        <!-- DATA DIRI -->
+        <div class="card">
+
+            <h2>📋 Data Diri</h2>
+
+            <div class="data">
+                <strong>Nama:</strong>
+                <span id="nama">Belum diisi</span>
+            </div>
+
+            <div class="data">
+                <strong>Sekolah:</strong>
+                <span id="sekolah">Belum diisi</span>
+            </div>
+
+            <div class="data">
+                <strong>Umur:</strong>
+                <span id="umur">Belum diisi</span>
+            </div>
+
+            <div class="data">
+                <strong>Cita-cita:</strong>
+                <span id="cita">Belum diisi</span>
+            </div>
+
+            <div class="data">
+                <strong>Hobi:</strong>
+                <span id="hobi">Belum diisi</span>
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+        <div class="card">
+
+            <h2>📌 Menu</h2>
+
+            <div class="buttons">
+
+                <button onclick="register()">
+                    📝 Register Data Diri
+                </button>
+
+                <button onclick="jadwal()">
+                    📅 Masuk Jadwal Pelajaran
+                </button>
+
+                <button onclick="editJadwal()">
+                    ⚙️ Edit Jadwal Pelajaran
+                </button>
+
+                <button onclick="hasilKarya()">
+                    📊 Hasil Karya Excel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        Website Data Diri © 2026
+    </footer>
+
+
+    <script>
+
+        function register() {
+            alert("Halaman Register akan dibuat pada langkah berikutnya.");
+        }
+
+        function jadwal() {
+            alert("Halaman Jadwal Pelajaran akan dibuat pada langkah berikutnya.");
+        }
+
+        function editJadwal() {
+            alert("Halaman Edit Jadwal dengan PIN akan dibuat pada langkah berikutnya.");
+        }
+
+        function hasilKarya() {
+            alert("Halaman Hasil Karya Excel akan dibuat pada langkah berikutnya.");
+        }
+
+    </script>
+
+</body>
+
+</html>
