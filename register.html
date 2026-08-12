@@ -2,189 +2,524 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register Data Diri</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Data Diri</title>
+
 
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f2f5f9;
+
+        * {
+            box-sizing: border-box;
         }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dbeafe,
+                    #f8fafc
+                );
+
+            min-height: 100vh;
+
+        }
+
 
         .container {
-            max-width: 600px;
+
+            max-width: 650px;
+
             margin: 40px auto;
+
             padding: 20px;
+
         }
+
 
         .card {
+
             background: white;
+
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.10);
+
         }
+
 
         h1 {
+
             text-align: center;
+
             color: #2563eb;
+
+            margin-top: 0;
+
         }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+
+        }
+
 
         label {
+
             display: block;
+
             margin-top: 18px;
+
             margin-bottom: 7px;
+
             font-weight: bold;
+
+            color: #334155;
+
         }
+
 
         input {
+
             width: 100%;
-            box-sizing: border-box;
-            padding: 13px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+
+            padding: 14px;
+
+            border:
+                1px solid
+                #cbd5e1;
+
+            border-radius: 10px;
+
             font-size: 16px;
+
+            outline: none;
+
         }
+
+
+        input:focus {
+
+            border-color:
+                #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    37,
+                    99,
+                    235,
+                    0.10
+                );
+
+        }
+
 
         button {
+
             width: 100%;
-            margin-top: 25px;
+
             padding: 15px;
+
+            margin-top: 20px;
+
             border: none;
+
             border-radius: 10px;
-            background: #2563eb;
-            color: white;
+
             font-size: 16px;
+
+            color: white;
+
+            background: #2563eb;
+
             cursor: pointer;
+
         }
+
 
         button:hover {
+
             background: #1d4ed8;
+
         }
 
-        .back {
+
+        .kembali {
+
             background: #64748b;
+
         }
 
-        .back:hover {
+
+        .kembali:hover {
+
             background: #475569;
+
         }
+
+
+        .info {
+
+            background: #eff6ff;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            margin-bottom: 20px;
+
+            color: #1e40af;
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="container">
 
-        <div class="card">
+<div class="container">
 
-            <h1>📝 Register Data Diri</h1>
 
-            <p style="text-align:center;">
-                Isi data diri kamu di bawah ini.
-            </p>
+    <div class="card">
 
-            <label>👤 Nama</label>
-            <input
-                type="text"
-                id="nama"
-                placeholder="Masukkan nama kamu"
-            >
 
-            <label>🏫 Sekolah</label>
-            <input
-                type="text"
-                id="sekolah"
-                placeholder="Masukkan nama sekolah"
-            >
+        <h1>
+            📝 Data Diri
+        </h1>
 
-            <label>🎂 Umur</label>
-            <input
-                type="number"
-                id="umur"
-                placeholder="Masukkan umur"
-            >
 
-            <label>🎯 Cita-cita</label>
-            <input
-                type="text"
-                id="cita"
-                placeholder="Masukkan cita-cita"
-            >
+        <p class="subtitle">
 
-            <label>🎮 Hobi</label>
-            <input
-                type="text"
-                id="hobi"
-                placeholder="Masukkan hobi"
-            >
+            Isi atau ubah data diri kamu
 
-            <label>🔐 PIN</label>
-            <input
-                type="password"
-                id="pin"
-                placeholder="Buat PIN"
-                maxlength="6"
-            >
+        </p>
 
-            <button onclick="simpanData()">
-                💾 Simpan Data
-            </button>
 
-            <button
-                class="back"
-                onclick="kembali()">
-                🏠 Kembali
-            </button>
+        <div class="info">
+
+            💡 Data akan disimpan
+            di browser ini.
 
         </div>
 
+
+        <label>
+            👤 Nama
+        </label>
+
+        <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan nama">
+
+
+        <label>
+            🏫 Sekolah
+        </label>
+
+        <input
+            type="text"
+            id="sekolah"
+            placeholder="Masukkan sekolah">
+
+
+        <label>
+            🎂 Umur
+        </label>
+
+        <input
+            type="number"
+            id="umur"
+            placeholder="Masukkan umur">
+
+
+        <label>
+            🎯 Cita-cita
+        </label>
+
+        <input
+            type="text"
+            id="cita"
+            placeholder="Masukkan cita-cita">
+
+
+        <label>
+            🎮 Hobi
+        </label>
+
+        <input
+            type="text"
+            id="hobi"
+            placeholder="Masukkan hobi">
+
+
+        <label>
+            🔐 PIN
+        </label>
+
+        <input
+            type="password"
+            id="pin"
+            placeholder="Buat PIN 4-6 angka"
+            maxlength="6">
+
+
+        <button
+            onclick="simpanData()">
+
+            💾 Simpan Data
+
+        </button>
+
+
+        <button
+            class="kembali"
+            onclick="kembali()">
+
+            🏠 Kembali
+
+        </button>
+
+
     </div>
 
+</div>
 
-    <script>
 
-        function simpanData() {
 
-            const nama = document.getElementById("nama").value;
-            const sekolah = document.getElementById("sekolah").value;
-            const umur = document.getElementById("umur").value;
-            const cita = document.getElementById("cita").value;
-            const hobi = document.getElementById("hobi").value;
-            const pin = document.getElementById("pin").value;
+<script>
 
-            if (
-                nama === "" ||
-                sekolah === "" ||
-                umur === "" ||
-                cita === "" ||
-                hobi === "" ||
-                pin === ""
-            ) {
-                alert("⚠️ Semua data harus diisi!");
-                return;
-            }
 
-            localStorage.setItem("nama", nama);
-            localStorage.setItem("sekolah", sekolah);
-            localStorage.setItem("umur", umur);
-            localStorage.setItem("cita", cita);
-            localStorage.setItem("hobi", hobi);
-            localStorage.setItem("pin", pin);
+// ==========================
+// TAMPILKAN DATA LAMA
+// ==========================
 
-            alert("✅ Data berhasil disimpan!");
 
-            window.location.href = "index.html";
+document.getElementById("nama").value =
+    localStorage.getItem("nama") || "";
+
+
+document.getElementById("sekolah").value =
+    localStorage.getItem("sekolah") || "";
+
+
+document.getElementById("umur").value =
+    localStorage.getItem("umur") || "";
+
+
+document.getElementById("cita").value =
+    localStorage.getItem("cita") || "";
+
+
+document.getElementById("hobi").value =
+    localStorage.getItem("hobi") || "";
+
+
+
+// PIN tidak langsung ditampilkan
+// untuk keamanan.
+
+
+function simpanData() {
+
+
+    const nama =
+        document.getElementById("nama")
+        .value.trim();
+
+
+    const sekolah =
+        document.getElementById("sekolah")
+        .value.trim();
+
+
+    const umur =
+        document.getElementById("umur")
+        .value.trim();
+
+
+    const cita =
+        document.getElementById("cita")
+        .value.trim();
+
+
+    const hobi =
+        document.getElementById("hobi")
+        .value.trim();
+
+
+    const pinInput =
+        document.getElementById("pin")
+        .value.trim();
+
+
+    // ==========================
+    // CEK DATA
+    // ==========================
+
+
+    if (
+        nama === "" ||
+        sekolah === "" ||
+        umur === "" ||
+        cita === "" ||
+        hobi === ""
+    ) {
+
+        alert(
+            "⚠️ Semua data harus diisi!"
+        );
+
+        return;
+
+    }
+
+
+    // ==========================
+    // CEK PIN
+    // ==========================
+
+
+    const pinLama =
+        localStorage.getItem("pin");
+
+
+    // Jika belum punya PIN,
+    // buat PIN baru.
+
+
+    if (!pinLama) {
+
+
+        if (
+            pinInput.length < 4
+        ) {
+
+            alert(
+                "⚠️ PIN minimal 4 angka!"
+            );
+
+            return;
+
         }
 
 
-        function kembali() {
-            window.location.href = "index.html";
+        localStorage.setItem(
+            "pin",
+            pinInput
+        );
+
+
+    } else {
+
+
+        // Jika sudah punya PIN,
+        // PIN harus benar.
+
+
+        if (
+            pinInput !== pinLama
+        ) {
+
+            alert(
+                "❌ PIN salah!"
+            );
+
+            return;
+
         }
 
-    </script>
+    }
+
+
+    // ==========================
+    // SIMPAN DATA
+    // ==========================
+
+
+    localStorage.setItem(
+        "nama",
+        nama
+    );
+
+
+    localStorage.setItem(
+        "sekolah",
+        sekolah
+    );
+
+
+    localStorage.setItem(
+        "umur",
+        umur
+    );
+
+
+    localStorage.setItem(
+        "cita",
+        cita
+    );
+
+
+    localStorage.setItem(
+        "hobi",
+        hobi
+    );
+
+
+    alert(
+        "✅ Data diri berhasil disimpan!"
+    );
+
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+
+// ==========================
+// KEMBALI
+// ==========================
+
+
+function kembali() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+</script>
+
 
 </body>
 
