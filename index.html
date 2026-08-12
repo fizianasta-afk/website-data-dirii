@@ -744,6 +744,16 @@
 
 <script>
 
+    function logout() {
+
+    localStorage.removeItem(
+        "sudahLogin"
+    );
+
+    window.location.href =
+        "login.html";
+
+}
     const foto =
     localStorage.getItem("foto");
 
